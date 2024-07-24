@@ -16,3 +16,12 @@ jobs:
 
       - name: Install
         run: pip install -r requirements.txt
+
+      # Zip the cache into a single file.
+      - name: Zip
+        run: tar -czf cache-pip.tar.gz ~/.cache/pip
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: cache-pip
+          path: cache-pip.tar.gz
